@@ -1,23 +1,28 @@
 buildscript {
+    ext.kotlin_version = '1.3.72'
     repositories {
-        gradlePluginPortal()
         jcenter()
         google()
-        maven {
-            url 'https://dl.bintray.com/kotlin/kotlin-eap'
-        }
+        mavenCentral()
+        gradlePluginPortal()
     }
     dependencies {
-        classpath('org.jetbrains.kotlin:kotlin-gradle-plugin:1.4-M2')
-        classpath('com.android.tools.build:gradle:3.5.2')
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.android.tools.build:gradle:4.0.0'
     }
 }
-group = 'com.softartdev'
-version = '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-    maven {
-        url 'https://dl.bintray.com/kotlin/kotlin-eap'
+allprojects {
+    repositories {
+        gradlePluginPortal()
+        google()
+        jcenter()
+        mavenCentral()
     }
+    group = 'com.softartdev'
+    version = '1.0-SNAPSHOT'
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
